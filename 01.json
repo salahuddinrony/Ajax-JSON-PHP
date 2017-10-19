@@ -1,0 +1,23 @@
+{
+	"employee": [
+		{
+			"name": "Md Salahuddin Khan",
+			"Email": "cisrony@gmail.com"
+		},
+		{
+			"name": "Md Karim",
+			"Email": "karim@gmail.com"
+		},
+		{
+			"name": "Md Rahim,",
+			"Email": "rahim@gmail.com"
+		},
+		{
+			"name": "Md Salam",
+			"Email": "salam@gmail.com"
+		}, {
+			"Mobile": "01917827230",
+			"Email": "cisrony@gmail.com"
+		}
+	]
+}

@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>PHP, Ajax & Json</title>
+        <script type="text/javascript" src="jquery.min.js"></script>
+</head>
+<body>
+
+    <div id="header">
+        <ul>
+            <li><a href="#" onClick="getpage('home')">Home</a></li>
+            <li><a href="#" onClick="getpage('about')">About</a></li>
+            <li><a href="#" onClick="getpage('service')">Service</a></li>
+        </ul>
+    </div>
+	
+	<progress value="57" max="100"></progress>
+	
+	<h2>Total Records: <span id="msg">0</span></h2>
+    
+    <div id="contents"> </div>
+    <div id="ttb"> </div>
+    
+    <script>
+        /*function getpage(pagename){
+            $.ajax({
+                type: "post",
+                dataType: "JSON",
+                url: "json_array.php",
+                data: {page: pagename},
+                success: function(data){
+                    $('#contents').html(data.content);
+                    $('#contents').css('background-color',data.color);
+                    $('#contents').css('color', data.textcolor);
+                    //alert(data.content);
+                    console.log('Success');
+                },
+                error: function(data){     
+                    console.log('Error');
+                }
+            });
+        }*/
+		
+		
+		// Ajax Solution Method Number 1
+		/*
+		$.getJSON('01.json', function(data){
+			tab = '<table border="1" width="100%"><tr><th>UserId</th><th>Name</th><th>Email</th></tr>';
+			$.each(data.employee, function(key, val){
+				tab += "<tr>";
+				tab += '<td>'+key+'</td>';
+				tab += '<td>'+val.name+'</td>';
+				tab += '<td>'+val.Email+'</td>';
+				tab += '</tr>';
+			});
+			tab += '</table>';
+			$('#ttb').html(tab);
+		});
+		*/
+		
+		
+		// Ajax Solution Method Number 2
+		
+		/*
+		$.getJSON('24-07-2017.json', function(data){
+			tab = '<table border="1" width="100%"><tr><th>UserId</th><th>Name</th><th>Email</th><th>UserType</th><th>Status</th><th>Registered</th><th>LoginOn</th><th>LogoutOn</th><th>Username</th></tr>';
+			$.each(data, function(key, val){
+				tab += "<tr>";
+				tab += '<td>'+val.UserId+'</td>';
+				tab += '<td>'+val.Name+'</td>';
+				tab += '<td>'+val.Email+'</td>';
+				tab += '<td>'+val.UserType+'</td>';
+				tab += '<td>'+val.Status+'</td>';
+				tab += '<td>'+val.Registered+'</td>';
+				tab += '<td>'+val.LoginOn+'</td>';
+				tab += '<td>'+val.LogoutOn+'</td>';
+				tab += '<td>'+val.Username+'</td>';
+				tab += '</tr>';
+			});
+			tab += '</table>';
+			$('#ttb').html(tab);
+		});
+		
+		*/
+		// Ajax Solution Method Number 
+		setInterval(function(){
+			$.ajax({
+				url: '24-07-2017.json',
+				type: 'POST',
+				dataType: 'JSON',
+				success: function(data){
+					$('#msg').html(data.length);
+				}
+			});
+		},3000);
+		
+		
+		$.ajax({
+			url: '24-07-2017.json',
+			type: 'POST',
+			dataType: 'JSON',
+			success: function(data){
+				tab = '<table border="1" width="100%"><tr><th>UserId</th><th>Name</th><th>Email</th><th>UserType</th><th>Status</th><th>Registered</th><th>LoginOn</th><th>LogoutOn</th><th>Username</th></tr>';
+				console.log('1');
+				$.each(data, function(key, val){
+					tab += "<tr>";
+					tab += '<td>'+val.UserId+'</td>';
+					tab += '<td contenteditable="true">'+val.Name+'</td>';
+					tab += '<td>'+val.Email+'</td>';
+					tab += '<td>'+val.UserType+'</td>';
+					tab += '<td>'+val.Status+'</td>';
+					tab += '<td>'+val.Registered+'</td>';
+					tab += '<td>'+val.LoginOn+'</td>';
+					tab += '<td>'+val.LogoutOn+'</td>';
+					tab += '<td>'+val.Username+'</td>';
+					tab += '</tr>';
+				});
+				tab += '</table>';
+				
+				$('#ttb').html(tab);
+			}
+		});
+    </script>
+    
+</body>
+</html>
